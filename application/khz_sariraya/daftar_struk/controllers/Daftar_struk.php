@@ -64,6 +64,16 @@ class Daftar_struk extends CI_Controller
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
+    
+    public function ubahstatus($uniqid,$status)
+    {
+        $data = array('status_timbang' =>$status ,);
+        $this->Model_Daftar_Struk->ubahstatus($uniqid,$data);        
+        redirect(base_url('daftar_struk'),'refresh');
+    
+    }
+
+
 }
 
 /* End of file daftar_struk.php */

@@ -96,6 +96,16 @@ class Model_Daftar_Struk extends CI_Model
         $this->db->delete($this->table);
     }
 
+    function ubahstatus($uniqid,$data)
+{
+    
+    $this->db->where('uniqid', $uniqid);
+    $this->db->where('status_timbang', 0);
+    $this->db->update('timbangan_h_penimbangan', $data);
+    
+}
+
+
 }
 
 /* End of file Model_kategori.php */

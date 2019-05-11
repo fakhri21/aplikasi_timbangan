@@ -80,15 +80,27 @@
             var length = info.iLength;
             var index = page * length + (iDisplayIndex + 1);
             var status='<label class="label label-success">Sudah Bayar</label>'
-        //var aksi='<a href="daftar_struk/read/'+uniqid+'">Print</a>'
-
+            var aksi='<a href="daftar_struk/read/'+data.uniqid+'">Print</a> || '
+                        
 
         if (data.status==0) {
-            status='<label class="label label-danger">Belum Bayar</label>'
-        }
-        $('td:eq(0)', row).html(index);
-        $('td:eq(3)', row).html(status);
-        //$('td:eq(4)', row).html(aksi);
+                            status='<label class="label label-warning">Pending</label>'
+                            var aksi=aksi+'<a onclick="javasciprt: return confirm(\'Are You Sure ?\')" href="daftar_struk/ubahstatus/'+data.uniqid+'/1">POSTING</a> || '
+                            var aksi=aksi+'<a onclick="javasciprt: return confirm(\'Are You Sure ?\')" href="daftar_struk/ubahstatus/'+data.uniqid+'/2">VOID</a> || '
+                     
+                     
+                        }
+                        else if(data.status==1){
+                            status='<label class="label label-primary">Terposting</label>'
+
+                        }
+                        else{
+                            status='<label class="label label-danger">Void</label>'
+                        }
+
+                        $('td:eq(0)', row).html(index);
+                        $('td:eq(3)', row).html(status);
+                        $('td:eq(4)', row).html(aksi);
     }
 });
 });
