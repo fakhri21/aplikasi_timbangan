@@ -1,5 +1,5 @@
-<section class="content">
-        <h2 style="margin-top:0px">Timbangan_m_kendaraan Read</h2>
+
+        <h2 style="margin-top:30px">Data Kendaraan</h2>
         <div class="box">
         <div class="box-body">
         <table class="table">
@@ -9,6 +9,3 @@
 	    <tr><td>Nilai Tarra</td><td><?php echo $nilai_tarra; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo base_url('m_kendaraan') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
-</div>
-</div>
-</section>

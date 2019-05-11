@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <div class="box box-primary">
+            <div class="box box-primary" style="margin-top: 40px;">
                 <div class="box-header">
                     <h1 class="display-4">Laporan Timbang</h1>
                 </div>

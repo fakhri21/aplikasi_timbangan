@@ -1,18 +1,14 @@
 
-<div class="row mb-2">
-        <div class="primary">
-            <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
-        </div>
-</div>
-
-<h1>Profile Perusahaan</h1>
- <div class="box-body">
-
-            <div class="form-group">
+<?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+   <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="box box-primary" style="margin-top: 30px;">
+        <div class="box-header"><h3>Profile Perusahaan</h3></div>
+        
+        <div class="box-body">
+           <div class="form-group">
                 <form method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>konfigurasi/aksi/nama_perusahaan">
                     <label>Nama Perusahaan</label>
-                    <input type="text" name="value" value="<?php echo get_option( 'nama_perusahaan' ); ?>">
-                    <br>
+                    <input type="text" class="form-control" name="value" value="<?php echo get_option( 'nama_perusahaan' ); ?>">
                     <button class="btn btn-sm btn-flat btn-primary">Submit</button>
                 </form>
             </div>
@@ -20,8 +16,7 @@
             <div class="form-group">
                 <form method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>konfigurasi/aksi/alamat_perusahaan">
                     <label>Alamat Perusahaan</label>
-                    <textarea name="value"><?php echo get_option( 'alamat_perusahaan' ); ?></textarea> 
-                    <br>
+                    <textarea name="value" class="form-control"><?php echo get_option( 'alamat_perusahaan' ); ?></textarea> 
                     <button class="btn btn-sm btn-flat btn-primary">Submit</button>
                 </form>
             </div>
@@ -29,23 +24,24 @@
             <div class="form-group">
                 <form method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>konfigurasi/aksi/slogan_perusahaan">
                     <label>Slogan Perusahaan</label>
-                    <input type="text" name="value" value="<?php echo get_option( 'slogan_perusahaan' ); ?>">
-                    <br>
+                    <input type="text" class="form-control" name="value" value="<?php echo get_option( 'slogan_perusahaan' ); ?>">
                     <button class="btn btn-sm btn-flat btn-primary">Submit</button>
                 </form>
-            </div>
-            
-</div><!-- box body -->
+            </div>            
+        </div>
+    </div>
+    
+</div>
 
-<div class="col">
-<h1>Konfigurasi Timbangan</h1>
-    <div class="box-body">
-
-                <div class="form-group">
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="box box-primary" style="margin-top: 30px;">
+        <div class="box-header"><h3>Konfigurasi Timbangan</h3></div>
+        
+        <div class="box-body">
+        <div class="form-group">
                     <form method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>konfigurasi/aksi/nama_perusahaan">
                         <label>Nama Perusahaan</label>
-                        <input type="text" name="value" value="<?php echo get_option( 'nama_perusahaan' ); ?>">
-                        <br>
+                        <input type="text" class="form-control" name="value" value="<?php echo get_option( 'nama_perusahaan' ); ?>">
                         <button class="btn btn-sm btn-flat btn-primary">Submit</button>
                     </form>
                 </div>
@@ -53,8 +49,7 @@
                 <div class="form-group">
                     <form method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>konfigurasi/aksi/alamat_perusahaan">
                         <label>Alamat Perusahaan</label>
-                        <textarea name="value"><?php echo get_option( 'alamat_perusahaan' ); ?></textarea> 
-                        <br>
+                        <textarea name="value" class="form-control"><?php echo get_option( 'alamat_perusahaan' ); ?></textarea> 
                         <button class="btn btn-sm btn-flat btn-primary">Submit</button>
                     </form>
                 </div>
@@ -62,14 +57,16 @@
                 <div class="form-group">
                     <form method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>konfigurasi/aksi/slogan_perusahaan">
                         <label>Slogan Perusahaan</label>
-                        <input type="text" name="value" value="<?php echo get_option( 'slogan_perusahaan' ); ?>">
-                        <br>
+                        <input type="text" class="form-control" name="value" value="<?php echo get_option( 'slogan_perusahaan' ); ?>">
                         <button class="btn btn-sm btn-flat btn-primary">Submit</button>
                     </form>
                 </div>
-                
-    </div><!-- box body -->
+        </div>
+    </div>
 </div>
+        
+
+
 
 <script>
     $(document).ready(function() {

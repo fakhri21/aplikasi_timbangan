@@ -1,8 +1,14 @@
-Priode : <?php echo date_format(date_create(get_option('buka_timbangan')),"d/m/Y")  ?>
-<br>
-Nama Penimbang : <?php echo $nama_penimbang ?> 
-    <div class="col">
-        <div class="box box-primary">
+	
+	<div class="row">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="box-info-penimbang">
+			<p>Priode : <?php echo date_format(date_create(get_option('buka_timbangan')),"d/m/Y")  ?></p>
+			<p>Nama Penimbang : <?php echo $nama_penimbang ?></p>
+		</div>
+	</div>
+	
+	<div class="col-md-8 col-sm-8 col-xs-12">	
+		<div class="box box-primary">
 
             <div class="box-header with-border">
                 <h3>Timbangan Utama</h3>
@@ -10,19 +16,19 @@ Nama Penimbang : <?php echo $nama_penimbang ?>
 
             <div class="box-body">
 
-                <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="row">
 
 
                     
-                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <label>No Plat Kendaraan</label>
                             <?php echo cmb_dinamis('m_kendaraan','timbangan_m_kendaraan','no_plat','uniqid','uniqid') ?>
                         </div>
                     </div>
                     
-                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <label>Customer</label>
                             <?php echo cmb_dinamis('m_customer','timbangan_m_customer','nama_customer','uniqid','uniqid') ?>
@@ -36,28 +42,28 @@ Nama Penimbang : <?php echo $nama_penimbang ?>
                         </div>
                     </div>
 
-                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <label>Bruto</label>
                             <input id="bruto" oninput="" placeholder="Kg" class="form-control">
                         </div>
                     </div>
                     
-                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <label>Tarra</label>
                             <input id="tarra" oninput="" placeholder="Kg" class="form-control">
                         </div>
                     </div>
 
-                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <label>Potongan</label>
                             <input id="persen_potongan" oninput="" placeholder="%" class="form-control">
                         </div>
                     </div>
 
-                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
                             <label>Jumlah</label>
                             <input id="nilai" oninput="" placeholder="Rp" class="form-control">
@@ -79,22 +85,19 @@ Nama Penimbang : <?php echo $nama_penimbang ?>
 
                 </div>
                 </div><!-- row -->
-
-                <div class="col" id="hasil_timbangan">
-                 <div>
-                     
-                 hasil
-                 </div>
-
-                </div>
-
-
             </div><!-- box-body -->
             
         </div><!-- box -->
-    </div><!-- col -->
-</div>
-
+	</div>
+	
+	<div class="col-md-4 col-sm-4 col-xs-12">
+		<div class="box-hasil-timbangan">
+		<div id="hasil_timbangan">
+		</div>
+		</div>
+	</div>
+	</div>
+	
 
 </div>
 
