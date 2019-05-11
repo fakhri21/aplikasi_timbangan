@@ -2,9 +2,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <style type="text/css">
+    body{background: #ddd; }    
+    .box{
+        width: 400px;
+        padding: 20px 30px; background: #fff;
+        margin: 20px 0px;
+    }
 	table.table-style-two {
 		font-family: verdana, arial, sans-serif;
-		font-size: 20px;
+		font-size: 17px;
 		color: #333333;
 		border-width: 1px;
 		border-color: #3A3A3A;
@@ -33,7 +39,7 @@
 </style>
     <body>
     
-  <div class="panel-body">
+    <div class="box">
   <h3>BAST KASIR</h3>
   <h3>Periode <?php echo $w_awal ?> s/d <?php echo $w_akhir ?></h3>
                 <table class="table-style-two">
@@ -60,8 +66,12 @@
                         </tr>
                         <?php }?>
                     <tr>
-                        <td colspan=2>Grand Total</td>
+                        <td colspan='2'>Grand Total</td>
                         <td><?php echo number_format($grandtotal) ?></td>
+                           <td>&nbsp;</td>
                             
                     </tr>
+        </table>
+        </div>
+    </body>
 </html>
