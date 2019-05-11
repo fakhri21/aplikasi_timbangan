@@ -22,7 +22,7 @@ if (!empty($this->session->flashdata('message_failed'))) {
 
 ?>
 <div class="container">
-    <div class="box box-primary px-2">
+    <div class="box box-primary px-2" style="margin-top: 30px;">
         <div class="box-header">
             <a href="<?php echo base_url('akuntansi') ?>" class="btn btn-link btn-back"><i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
             <h3 class="display- mb-2">
@@ -37,8 +37,9 @@ if (!empty($this->session->flashdata('message_failed'))) {
                     <form id="eod" method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>tutup_buku/eod">
                         <div class="form-group d-flex flex-column justify-content-center align-items-center">
                             <label>Harian</label>
-                            <button type="submit" name="buka" class="btn btn-primary btn-block">Buka</button>
-                            <button type="submit" name="hari" class="btn btn-outline-primary btn-block">EOD</button>
+								<button type="submit" name="buka" class="btn btn-primary btn-block">Buka</button>
+								
+								<button type="submit" name="hari" class="btn btn-outline-primary btn-block">EOD</button>
                         </div>
                     </form>
                 </div>

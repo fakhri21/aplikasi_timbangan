@@ -1,11 +1,8 @@
-<!doctype html>
-<html>
-    <head>
-        <title>harviacode.com - codeigniter crud generator</title>
-        <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>"/>
-    </head>
-    <body>
-        <h2 style="margin-top:0px">Timbangan_m_customer <?php echo $button ?></h2>
+<div class="col-md-12" style="margin-top: 30px;">
+    <h3>Kelola Customer</h3>
+</div>
+
+<div class="col-md-6 col-sm-6 col-xs-12">
         <form action="<?php echo $action; ?>" method="post">
 	    <div class="form-group">
             <label for="varchar">Nama <?php echo form_error('nama') ?></label>
@@ -27,5 +24,4 @@
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo base_url('m_customer') ?>" class="btn btn-default">Cancel</a>
 	</form>
-    </body>
-</html>
+</div>

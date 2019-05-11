@@ -73,7 +73,7 @@ class Laporan extends CI_Controller
         $dompdf = new DOMPDF();
 
         //Load html view
-        print_r($data['table_header']);
+        //print_r($data['table_header']);
 	    $html=$this->load->view('pdf_penjualan', $data);
        /*  $dompdf->load_html($html);
 	    $dompdf->set_paper('A4', 'potrait');
@@ -195,11 +195,7 @@ class Laporan extends CI_Controller
         $dompdf = new DOMPDF();
 
         //Load html view
-	    $html=$this->load->view('pdf_serah_terima', $data,TRUE);
-        $dompdf->load_html($html);
-	    $dompdf->set_paper('A4', 'potrait');
-	    $dompdf->render();
-	    $dompdf->stream('tes.pdf',array('Attachment' =>0));
+	    $html=$this->load->view('pdf_serah_terima', $data);
         
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');

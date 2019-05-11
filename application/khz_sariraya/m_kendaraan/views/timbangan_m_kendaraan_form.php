@@ -1,12 +1,10 @@
-<!doctype html>
-<html>
-    <head>
-        <title>harviacode.com - codeigniter crud generator</title>
-        <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>"/>
-    </head>
-    <body>
-        <h2 style="margin-top:0px">Timbangan_m_kendaraan <?php echo $button ?></h2>
-        <form action="<?php echo $action; ?>" method="post">
+
+<div class="col-md-12" style="margin-top: 30px;">
+    <h3>Kelola Kendaraan</h3>
+</div>
+
+<div class="col-md-6 col-sm-6 col-xs-12">
+   <form action="<?php echo $action; ?>" method="post">
 	    <div class="form-group">
             <label for="varchar">Id Kendaraan <?php echo form_error('id_kendaraan') ?></label>
             <input type="text" class="form-control" name="id_kendaraan" id="id_kendaraan" placeholder="Id Kendaraan" value="<?php echo $id_kendaraan; ?>" />
@@ -26,6 +24,5 @@
 	    <input type="hidden" name="uniqid" value="<?php echo $uniqid; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo base_url('m_kendaraan') ?>" class="btn btn-default">Cancel</a>
-	</form>
-    </body>
-</html>
+	</form>    
+</div>

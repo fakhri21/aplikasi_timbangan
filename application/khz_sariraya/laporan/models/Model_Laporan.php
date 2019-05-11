@@ -56,8 +56,8 @@ class Model_Laporan extends CI_Model
     // laporan_penjualan
     function laporan_serah_terima($w_awal,$w_akhir,$status)
     {
-        $this->db->select('MIN(waktu_order) as waktu_masuk ,MAX(waktu_order) as waktu_keluar,nama_kasir,sum(total_bersih) as pendapatan,');
-		$this->db->from('laporan_penjualan');
+        $this->db->select('MIN(waktu_timbang) as waktu_masuk ,MAX(waktu_timbang) as waktu_keluar,nama_penimbang,sum(total_bersih) as pendapatan,');
+		$this->db->from('timbangan_laporan_penimbangan');
 		if (!empty($w_awal)) {
 			$this->db->where('date(eod) >= '.$w_awal.' and date(eod)<=	'.$w_akhir.'');
 		}
@@ -65,7 +65,7 @@ class Model_Laporan extends CI_Model
             $this->db->where('eod',0);
         }
         
-		$this->db->where('void',$status);
+		//$this->db->where('void',$status);
         $this->db->group_by('nama_penimbang');
         
 		

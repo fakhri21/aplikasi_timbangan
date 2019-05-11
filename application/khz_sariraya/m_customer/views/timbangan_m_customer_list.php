@@ -1,21 +1,26 @@
-<!doctype html>
-<html>
-    <body>
-        <div class="row" style="margin-bottom: 10px">
-            <div class="col-md-4">
-                <h2 style="margin-top:0px">Timbangan_m_customer List</h2>
-            </div>
-            <div class="col-md-4 text-center">
-                <div style="margin-top: 4px"  id="message">
-                    <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+<div class="col-md-12">
+
+    <div class="box box-primary" style="margin-top: 30px;">
+        <div class="box-header">
+            <h3>List Customer</h3>
+        </div>
+
+        <div class="box-body">
+            <div class="row" style="margin-bottom: 10px">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4 text-center">
+                    <div style="margin-top: 4px" id="message">
+                        <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
+                    </div>
+                </div>
+                <div class="col-md-4 text-right">
+                    <?php echo anchor(base_url('m_customer/create'), 'Create', 'class="btn btn-primary"'); ?>
+                    <?php echo anchor(base_url('m_customer/excel'), 'Excel', 'class="btn btn-primary"'); ?>
                 </div>
             </div>
-            <div class="col-md-4 text-right">
-                <?php echo anchor(base_url('m_customer/create'), 'Create', 'class="btn btn-primary"'); ?>
-		<?php echo anchor(base_url('m_customer/excel'), 'Excel', 'class="btn btn-primary"'); ?>
-	    </div>
-        </div>
-        <table class="table table-bordered table-striped" id="mytable">
+
+            <table class="table table-bordered table-striped" id="mytable">
             <thead>
                 <tr>
                     <th width="80px">No</th>
@@ -28,9 +33,11 @@
             </thead>
 	    
         </table>
-        <script src="<?php echo base_url('assets/js/jquery-1.11.2.min.js') ?>"></script>
-        <script src="<?php echo base_url('assets/datatables/jquery.dataTables.js') ?>"></script>
-        <script src="<?php echo base_url('assets/datatables/dataTables.bootstrap.js') ?>"></script>
+        </div>
+    </div>
+</div><!-- col -->
+
+       
         <script type="text/javascript">
             $(document).ready(function() {
                 $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
@@ -85,5 +92,3 @@
                 });
             });
         </script>
-    </body>
-</html>

@@ -39,6 +39,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
         <a class="navbar-brand" href="<?php echo site_url() ?>">Home</a>
@@ -70,9 +71,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="<?php echo base_url();?>assets/js/selectize.js" type="text/javascript"></script>
   <script src="<?php echo base_url();?>assets/js/d3.min.js" type="text/javascript"></script>
   
-              <div class="col">
-              <?php echo $contents; ?>
-              </div>
+<div class="container">
+    <div class="row">
+       <?php echo $contents; ?>        
+    </div>
+</div>
      
 <script>
   var base_url="<?php echo base_url(); ?>"
