@@ -29,9 +29,23 @@
                     </div>
                     
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="form-group">
+                        <div id="form-customer" class="form-group">
                             <label>Customer</label>
-                            <?php echo cmb_dinamis('m_customer','timbangan_m_customer','nama_customer','uniqid','uniqid') ?>
+                            <?php echo cmb_dinamis('m_customer','timbangan_m_customer','nama','uniqid','uniqid') ?>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <input type="radio" name="kondisi" value="0" id="status" checked onclick="hide_supplier()">Customer
+                            <input type="radio" name="kondisi" value="1" id="status" checked onclick="hide_customer()">Supplier
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div id="form-supplier" class="form-group">
+                            <label>Supplier</label>
+                            <?php echo cmb_dinamis('m_supplier','timbangan_m_supplier','nama','uniqid','uniqid') ?>
                         </div>
                     </div>
 
@@ -44,38 +58,38 @@
 
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
-                            <label>Bruto</label>
-                            <input id="bruto" oninput="" placeholder="Kg" class="form-control">
+                            <label>Bruto (Kg)</label>
+                            <input id="bruto" oninput="" placeholder="Kg" class="form-control angka">
                         </div>
                     </div>
                     
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
-                            <label>Tarra</label>
-                            <input id="tarra" oninput="" placeholder="Kg" class="form-control">
+                            <label>Tarra (Kg)</label>
+                            <input id="tarra" oninput="" placeholder="Kg" class="form-control angka">
                         </div>
                     </div>
 
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
-                            <label>Potongan</label>
-                            <input id="persen_potongan" oninput="" placeholder="%" class="form-control">
+                            <label>Potongan (%)</label>
+                            <input type="number" max="100" id="persen_potongan" oninput="" placeholder="%" class="form-control angka">
                         </div>
                     </div>
 
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="form-group">
-                            <label>Jumlah</label>
-                            <input id="nilai" oninput="" placeholder="Rp" class="form-control">
+                            <label>Nilai Harga / Kg</label>
+                            <input id="nilai" oninput="" placeholder="Rp" class="form-control angka">
                         </div>
                     </div>
-
+<!-- 
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label>Keterangan</label>
                             <textarea id="keterangan" placeholder="Keterangan" class="form-control"></textarea>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="col-md-12">
                         <button class="btn btn-primary" onclick="hitung_timbangan()"><i class="fa fa-check"></i> Hitung Timbangan</button>
@@ -103,12 +117,16 @@
 
 <script>
 $(document).ready(function() {
-      $("#m_kendaraan").selectize();
-      $("#m_customer").selectize();
+        $("#m_kendaraan").selectize();
+        $("#m_customer").selectize();
+        $("#m_supplier").selectize();
+        $("#m_product").selectize();
 
-        var cleaveNumeral = new Cleave('#nilai', {
-            numeral: true,
-            numeralThousandsGroupStyle: 'thousand'
+        $('.angka').toArray().forEach(function(field){
+            new Cleave(field, {
+                numeral: true,
+                numeralThousandsGroupStyle: 'thousand'
+            })
         });
    
 })
@@ -117,6 +135,28 @@ $(document).ready(function() {
 </script>
 
 <script>
+    function hide_supplier() {
+        $("#form-supplier").hide()
+        $("#form-customer").show()
+    }
+    
+    function hide_customer() {
+        $("#form-supplier").show()
+        $("#form-customer").hide()
+    }
+</script>
+
+
+<script>
+function isi_bruto(nilai) {
+    $('#bruto').val(nilai)
+alert('<?php echo current_time( 'mysql' ) ?>')
+}    
+
+function isi_tarra(nilai) {
+    $('#tarra').val(nilai)
+}
+
 function hitung_timbangan() {
     var data={
         'bruto'     :   numeral($('#bruto').val()).value(),
@@ -133,9 +173,9 @@ function hitung_timbangan() {
 }
 
 function masuk_timbangan() {
+    var kondisi=$("#status").val()
     var data={
         'kendaraan' :   $("#m_kendaraan").val(),
-        'customer'  :   $("#m_customer").val(),
         'product'   :   $("#m_product").val(),
         'bruto'     :   numeral($('#bruto').val()).value(),
         'tarra'     :   numeral($('#tarra').val()).value(),
@@ -143,6 +183,12 @@ function masuk_timbangan() {
         'nilai'     :   numeral($('#nilai').val()).value(),
 
     }
+
+    if (kondisi==0) {
+            data.customer=$("#m_customer").val()
+        } else {
+            data.customer=$("#m_supplier").val()
+        }
 
     $.post('<?php echo base_url("timbangan/masuktimbangan/"); ?>',data,function (response) {
         alertify.success("Berhasil Menambahkan");

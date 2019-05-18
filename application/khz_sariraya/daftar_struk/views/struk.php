@@ -39,7 +39,7 @@
   <tr>
 	<td>Tanggal</td>
 	<td>:</td>
-	<td><?php echo date_format(date_create($print['waktu_order']),"d/m/Y"); ?></td>
+	<td><?php echo date_format(date_create($print['eod']),"d/m/Y"); ?></td>
   </tr>
   
   <tr>
@@ -51,6 +51,9 @@
   <tr>
 	<td>Kepada</td>
 	<td>:</td>
+	<?php if ($print['nama_supplier']) { ?>
+		<td><?php echo $print['nama_supplier']; ?></td>	
+	<?php } ?>
 	<td><?php echo $print['nama_customer']; ?></td>
   </tr>
   
@@ -125,6 +128,13 @@
 
 <div class="keterangan">
 <p>Keterangan</p>
+
+<?php if ($print['status_timbang']==1) {
+	echo "<h1>Terverifikasi</h1>";
+} elseif ($print['status_timbang']==2) {
+	echo "<h1>Void</h1>";
+}
+?>
 
 <table border="0">
 <tr>

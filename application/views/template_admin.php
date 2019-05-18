@@ -104,6 +104,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
      fixed layout. -->
+<div>
+  <?php echo do_shortcode('[gtranslate]'); ?>
+</div>
 
 </body>
 </html>

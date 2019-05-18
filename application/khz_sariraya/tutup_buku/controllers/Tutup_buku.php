@@ -38,7 +38,7 @@ class Tutup_buku extends CI_Controller
     public function eod()
     {
 
-        if (isset($_POST)) {
+        if (isset($_POST['buka'])) {
           
           redirect(base_url('tutup_buku/buka_timbangan'));
           

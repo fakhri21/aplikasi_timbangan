@@ -7,6 +7,7 @@ class Timbangan extends CI_Controller {
 public $nama_template='template_admin';
 public $id_penimbang='';
 public $id_group='kasir';
+public $priode='';
 
 public $data_product=[];
 public $uniqid=NULL;
@@ -30,6 +31,7 @@ public function __construct() {
                  redirect(base_url('denied'));
              }
     $this->id_penimbang=get_current_user_id();
+    $this->priode=get_option('buka_timbangan');
     
 }
 
@@ -41,17 +43,6 @@ public function __construct() {
         $this->template->load($this->nama_template,'timbangan_utama',$data);
     }
 
-    public function status_kasir()
-    {
-        $priode=get_option( 'buka_kasir' );
-        $data['tanggal_buka']="";
-        if ($priode<>'') {
-            $x=strtotime($priode);
-            $data['tanggal_buka']=date("d-m-Y", $x);
-        }
-
-        $this->template->load($this->nama_template,'status_kasir',$data);
-    }
     
 /* Kontent */
     public function kontent_table_pesanan()
@@ -123,12 +114,14 @@ public function __construct() {
     function masuktimbangan()
     {
         $pencatatan= array(
-            'id_pencatat'=>$this->id_kasir,
-            'id_timbang'=>0);
+            'id_pencatat'=>$this->id_penimbang,
+            'eod'=>$this->priode,
+            );
         $uniqid=$this->input->post('uniqid',TRUE);
         
         $data['kendaraan']=$this->input->post('kendaraan');
         $data['customer']=$this->input->post('customer');
+        $data['supplier']=$this->input->post('supplier');
         $data['product']=$this->input->post('product');
         $data['bruto']=$this->input->post('bruto');
         $data['tarra']=$this->input->post('tarra');
@@ -150,6 +143,7 @@ public function __construct() {
                 $insert = array(    'id_product' =>$data['product'],
                                     'id_kendaraan' =>$data['kendaraan'],
                                     'id_customer' =>$data['customer'],
+                                    'id_supplier' =>$data['supplier'],
                                     'bruto'=>$data['bruto'],
                                     'tarra'=>$data['tarra'],
                                     'netto'=>$hasil['netto'],

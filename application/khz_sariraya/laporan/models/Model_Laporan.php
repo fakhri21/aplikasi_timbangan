@@ -33,7 +33,7 @@ class Model_Laporan extends CI_Model
     }
 
     // laporan_penjualan
-    function laporan_penjualan($w_awal,$w_akhir,$jenis,$status)
+    function laporan_penjualan($w_awal,$w_akhir,$kondisi,$status)
     {
         $this->db->select('*');
 		$this->db->from('timbangan_laporan_penimbangan');
@@ -43,10 +43,13 @@ class Model_Laporan extends CI_Model
         else {
             $this->db->where('eod',0);
         }
-        if (!empty($jenis)) {
-            $this->db->where('id_jenis',$jenis);
+        /* if ($kondisi==0) {
+            $this->db->where('nama_customer IS NOT NULL');
         }
-		//$this->db->where('void',$status);
+        else {
+            $this->db->where('nama_supplier IS NOT NULL');
+        } */
+		$this->db->where('status_timbang',$status);
         $this->db->order_by('id_timbang', 'asc');
         
         return $this->db->get()->result_array();
@@ -65,7 +68,7 @@ class Model_Laporan extends CI_Model
             $this->db->where('eod',0);
         }
         
-		//$this->db->where('void',$status);
+		$this->db->where('status_timbang',$status);
         $this->db->group_by('nama_penimbang');
         
 		

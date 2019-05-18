@@ -65,6 +65,7 @@ class Model_kendaraan extends CI_Model
     // insert data
     function insert($data)
     {
+        $this->db->set('uniqid','UUID_SHORT()',FALSE);
         $this->db->insert($this->table, $data);
     }
 

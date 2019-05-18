@@ -85,6 +85,9 @@
 
         if (data.status==0) {
                             status='<label class="label label-warning">Pending</label>'
+                            var aksi=aksi+'<a onclick="javasciprt: return confirm(\'Are You Sure ?\')" href="daftar_struk/ubahstatus/'+data.uniqid+'/1">POSTING</a> || '
+                            var aksi=aksi+'<a onclick="javasciprt: return confirm(\'Are You Sure ?\')" href="daftar_struk/ubahstatus/'+data.uniqid+'/2">VOID</a> || '
+                     
                      
                         }
                         else if(data.status==1){

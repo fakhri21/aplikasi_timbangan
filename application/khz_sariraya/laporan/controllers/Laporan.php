@@ -46,7 +46,7 @@ class Laporan extends CI_Controller
     {
         $w_awal=NULL;
         $w_akhir=NULL;
-        $jenis=NULL;
+        $kondisi=NULL;
 
         if ($_POST) {
             $w_awal= stripslashes("\'".get_gmt_from_date($_POST['tanggal_awal'])."\'");
@@ -54,11 +54,9 @@ class Laporan extends CI_Controller
             $status= $_POST['status'];
         }
 
-        if ($_POST['id_jenis']) {
-            $jenis=$_POST['id_jenis'];
-        }
-
-        $data_print = $this->Model_Laporan->laporan_penjualan($w_awal,$w_akhir,$jenis,$status);
+            $kondisi=$_POST['kondisi'];
+        
+        $data_print = $this->Model_Laporan->laporan_penjualan($w_awal,$w_akhir,$kondisi,$status);
         $data['title']='Laporan Penjualan';
         $data['w_awal']=$_POST['tanggal_awal'];
         $data['w_akhir']=$_POST['tanggal_akhir'];
@@ -73,16 +71,21 @@ class Laporan extends CI_Controller
         $dompdf = new DOMPDF();
 
         //Load html view
-        //print_r($data['table_header']);
-	    $html=$this->load->view('pdf_penjualan', $data);
-       /*  $dompdf->load_html($html);
-	    $dompdf->set_paper('A4', 'potrait');
-	    $dompdf->render();
-	    $dompdf->stream('tes.pdf',array('Attachment' =>0)); */
+        if ($kondisi==0) {
+            //customer
+            $html=$this->load->view('pdf_penjualan_cus', $data,TRUE);
+        } else {
+            $html=$this->load->view('pdf_penjualan_supp', $data,TRUE);
+        }
         
+        $dompdf->load_html($html);
+	    $dompdf->set_paper('A4', 'landscape');
+	    $dompdf->render();
+	    $dompdf->stream('tes.pdf',array('Attachment' =>0)); 
+         
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(base_url('daftar_struk'));
+            redirect(base_url('laporan'));
         }
     }
 
@@ -94,7 +97,7 @@ class Laporan extends CI_Controller
         $judul = "Laporan_Penimbangan";
         $w_akhir=NULL;
         $w_awal=NULL;
-        $jenis=NULL;
+        $kondisi=NULL;
 
         if ($_POST) {
             $w_awal= stripslashes("\'".get_gmt_from_date($_POST['tanggal_awal'])."\'");
@@ -102,12 +105,12 @@ class Laporan extends CI_Controller
             $status= $_POST['status'];
         }
 
-        if ($_POST['id_jenis']) {
-            $jenis=$_POST['id_jenis'];
+        if ($_POST['kondisi']) {
+            $kondisi=$_POST['kondisi'];
         }
         
 
-        $detail=$this->Model_Laporan->laporan_penjualan($w_awal,$w_akhir,$jenis,$status);
+        $detail=$this->Model_Laporan->laporan_penjualan($w_awal,$w_akhir,$kondisi,$status);
         $w_awal=$_POST['tanggal_awal'];
         $w_akhir=$_POST['tanggal_akhir'];
 
@@ -173,19 +176,24 @@ class Laporan extends CI_Controller
     {
         $w_awal=NULL;
         $w_akhir=NULL;
-        $jenis=NULL;
+        $kondisi=NULL;
 
         if ($_POST) {
-            $w_awal= stripslashes("\'".$_POST['tanggal_awal']."\'");
-            $w_akhir= stripslashes("\'".$_POST['tanggal_akhir']."\'");
+            $w_awal= stripslashes("\'".get_gmt_from_date($_POST['tanggal_awal'])."\'");
+            $w_akhir= stripslashes("\'".get_gmt_from_date($_POST['tanggal_akhir'])."\'");
             $status= $_POST['status'];
+        }
+
+        if ($_POST['kondisi']) {
+            $kondisi=$_POST['kondisi'];
         }
 
         
         $data_print = $this->Model_Laporan->laporan_serah_terima($w_awal,$w_akhir,$status);
         $data['title']='Laporan Serah Terima ';
-        $data['w_awal']=$w_awal;
-        $data['w_akhir']=$w_akhir;
+        $data['w_awal']=$_POST['tanggal_awal'];
+        $data['w_akhir']=$_POST['tanggal_akhir'];
+        
         $data['record']=$data_print;
 	
         if ($data) {
@@ -195,11 +203,15 @@ class Laporan extends CI_Controller
         $dompdf = new DOMPDF();
 
         //Load html view
-	    $html=$this->load->view('pdf_serah_terima', $data);
-        
+	    $html=$this->load->view('pdf_serah_terima', $data,TRUE);
+        $dompdf->load_html($html);
+	    $dompdf->set_paper('A4', 'landscape');
+	    $dompdf->render();
+	    $dompdf->stream('tes.pdf',array('Attachment' =>0)); 
+         
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(base_url('daftar_struk'));
+            redirect(base_url('laporan'));
         }
     }
 
@@ -209,7 +221,7 @@ public function tes()
     $record=$this->Model_Laporan->urut_jenis();
 
       foreach ($record as $data) {
-        echo $data['id_jenis'];
+        echo $data['kondisi'];
         echo '<br>';
         foreach ($data['detail'] as $key) {
             echo $key['nama_product'];

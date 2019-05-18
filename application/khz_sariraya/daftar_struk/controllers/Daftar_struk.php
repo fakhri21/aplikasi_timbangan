@@ -5,19 +5,30 @@ if (!defined('BASEPATH'))
 
 class Daftar_struk extends CI_Controller
 {
+    public $user='';
+
     function __construct()
     {
         parent::__construct();
         $this->load->model('Model_Daftar_Struk');
         $this->load->library('form_validation');        
 	    $this->load->library('datatables');
+
+        $this->user = wp_get_current_user();
+        
     }
 
     public $nama_template='template_admin';
 
     public function index()
     {
-        $this->template->load($this->nama_template,'daftar_struk/daftar_struk_list');
+        if ( in_array( 'admin', (array) $this->user->roles ) ) {
+                 $this->template->load($this->nama_template,'daftar_struk/daftar_struk_list_adm');
+             }
+        else {
+            $this->template->load($this->nama_template,'daftar_struk/daftar_struk_list');
+        }
+        
     } 
     
     public function json() {
@@ -67,8 +78,12 @@ class Daftar_struk extends CI_Controller
     
     public function ubahstatus($uniqid,$status)
     {
-        $data = array('status_timbang' =>$status ,);
-        $this->Model_Daftar_Struk->ubahstatus($uniqid,$data);        
+        
+        if ( in_array( 'admin', (array) $this->user->roles ) ) {
+                $data = array('status_timbang' =>$status );
+                $this->Model_Daftar_Struk->ubahstatus($uniqid,$data);        
+        
+             }
         redirect(base_url('daftar_struk'),'refresh');
     
     }

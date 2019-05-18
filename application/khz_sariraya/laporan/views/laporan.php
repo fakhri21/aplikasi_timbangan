@@ -36,14 +36,20 @@
                                 <div class="form-group">
                                     <label>Status</label>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" id="customRadio1" name="status" class="custom-control-input" value="0">
+                                        <input type="radio" id="customRadio1" name="status" class="custom-control-input" value="1" checked>
                                         <label class="custom-control-label" for="customRadio1">Tidak Void</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" id="customRadio2" name="status" class="custom-control-input">
+                                        <input type="radio" id="customRadio2" name="status" class="custom-control-input" value="2">
                                         <label class="custom-control-label" for="customRadio2">Void</label>
                                     </div>
                                 </div>
+                                
+                                <div class="form-group">
+                                    <input type="radio" name="kondisi" value="0" id="status" checked>Customer
+                                    <input type="radio" name="kondisi" value="1" id="status">Supplier
+                                </div>
+                       
                                 <div class="form-group">
                                     <button class="btn btn-success" onclick="submitform('excel')" >Submit Excel</button>
                                     <button class="btn btn-primary" onclick="submitform('pdf')" >Submit Pdf</button>

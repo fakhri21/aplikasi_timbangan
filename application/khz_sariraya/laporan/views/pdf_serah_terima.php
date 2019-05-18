@@ -40,12 +40,12 @@
     <body>
     
     <div class="box">
-  <h3>BAST KASIR</h3>
+  <h3>Serah Terima Penimbang</h3>
   <h3>Periode <?php echo $w_awal ?> s/d <?php echo $w_akhir ?></h3>
                 <table class="table-style-two">
                     <tr>
                         <th>SHIFT</th>
-                        <th>Nama Kasir</th>
+                        <th>Nama Penimbang</th>
                         <th>Total Uang</th>
                         <th>Paraf</th>
                         
@@ -60,7 +60,7 @@
                         <!-- Kategori -->
                         <tr>
                             <td><?php echo ++$no ?></td>
-                            <td><?php echo $recorddata['nama_kasir'] ?></td>
+                            <td><?php echo $recorddata['nama_penimbang'] ?></td>
                             <td><?php echo number_format($recorddata['pendapatan']) ?></td>
                             <td></td>
                         </tr>
