@@ -1,0 +1,3 @@
+[submodule "/akuntansi"]
+	path = /akuntansi
+	url = https://github.com/fakhri21/akuntansi.git

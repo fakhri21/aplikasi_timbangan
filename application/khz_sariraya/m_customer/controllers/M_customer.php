@@ -67,6 +67,7 @@ class M_customer extends CI_Controller
 		'alamat' => $this->input->post('alamat',TRUE),
 		'no_handphone' => $this->input->post('no_handphone',TRUE),
 		'email' => $this->input->post('email',TRUE),
+		'uniqid_coa_piutang' => $this->input->post('coa_piutang',TRUE)
 	    );
 
             $this->Model_customer->insert($data);
@@ -108,6 +109,7 @@ class M_customer extends CI_Controller
 		'alamat' => $this->input->post('alamat',TRUE),
 		'no_handphone' => $this->input->post('no_handphone',TRUE),
 		'email' => $this->input->post('email',TRUE),
+        'uniqid_coa_piutang' => $this->input->post('coa_piutang',TRUE),
 	    );
 
             $this->Model_customer->update($this->input->post('uniqid', TRUE), $data);

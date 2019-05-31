@@ -64,6 +64,30 @@
         </div>
     </div>
 </div>
+
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="box box-primary" style="margin-top: 30px;">
+        <div class="box-header"><h3>Konfigurasi Lainnya</h3></div>
+        
+        <div class="box-body">
+                <div class="form-group">
+                    <form method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>konfigurasi/aksi/coa_kas">
+                        <label>Coa Kas</label>
+                        <?php echo cmb_dinamis('m_coa_kas','akuntansi_m_coa','nama_coa','uniqid','uniqid') ?>
+                        <button class="btn btn-sm btn-flat btn-primary">Submit</button>
+                    </form>
+                </div>
+                
+                <div class="form-group">
+                    <form method="post" enctype="multipart/form-data" action="<?php echo base_url(); ?>konfigurasi/aksi/coa_pendapatan">
+                        <label>Coa Pendapatan</label>
+                        <?php echo cmb_dinamis('m_coa_pendapatan','akuntansi_m_coa','nama_coa','uniqid','uniqid') ?>
+                        <button class="btn btn-sm btn-flat btn-primary">Submit</button>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>
         
 
 
@@ -71,17 +95,9 @@
 <script>
     $(document).ready(function() {
 
-        $.getJSON("m_coa/json",function (data) {
-        data
-        $("#coa_kas_kasir").selectize({
-                        valueField: 'id_coa',
-                        labelField: 'nama_coa',
-                        searchField: 'nama_coa',
-                        options: data.data,
-                        create: false
-                    });
+        $("#m_coa_kas").selectize();
+        $("#m_coa_pendapatan").selectize();
     
-        })
     })
 
 </script>

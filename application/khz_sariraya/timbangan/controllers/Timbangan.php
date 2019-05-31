@@ -40,7 +40,9 @@ public function __construct() {
     {
         $user = wp_get_current_user();
         $data['nama_penimbang'] = $user->display_name;
+        
         $this->template->load($this->nama_template,'timbangan_utama',$data);
+        $this->load->view('kontent/modal_angka_timbangan');
     }
 
     
@@ -52,13 +54,6 @@ public function __construct() {
          
     }
     
-    function tampilformvoid($uniqid)
-    {
-        
-        $data['uniqid'] = $uniqid;
-        $this->load->view('kontent_kasir/kontent_form_void', $data);
-        
-    }
 
 /* Aksi */
     
@@ -91,73 +86,122 @@ public function __construct() {
              ";
     }
     
-    function void_item($uniqid)
-    {
-        $username=$this->input->post('uservoid');
-        $password=$this->input->post('passvoid');
-        $checker=wp_authenticate_username_password( NULL,$username,$password);
-        $capability="void_item";
-
-        if (!is_wp_error($checker)) {
-            if (user_can( $checker, $capability )) {
-                if($this->Model_Kasir->void_item($uniqid))
-                {
-                    echo "Berhasil Void";
-                }
-            }
-        }
-        
-        redirect('kasir','refresh');
-
-    } 
 
     function masuktimbangan()
     {
-        $pencatatan= array(
+        $uniqid=$this->input->post('uniqid',TRUE);
+        $data['status_timbang']=$this->input->post('status_timbang');
+        $data['massa']=$this->input->post('massa');    
+        
+
+        if (!$uniqid) {
+            $uniqid=uniqid("",TRUE);
+        
+            $pencatatan= array(
             'id_pencatat'=>$this->id_penimbang,
             'eod'=>$this->priode,
             );
-        $uniqid=$this->input->post('uniqid',TRUE);
+
+            $data['kendaraan']=$this->input->post('kendaraan');
+            $data['customer']=$this->input->post('customer');
+            $data['supplier']=$this->input->post('supplier');
+            $data['product']=$this->input->post('product');
+            $data['persen_potongan']=$this->input->post('persen_potongan');
+            $data['nilai']=$this->input->post('nilai');
+            $data['supir']=$this->input->post('supir');
         
-        $data['kendaraan']=$this->input->post('kendaraan');
-        $data['customer']=$this->input->post('customer');
-        $data['supplier']=$this->input->post('supplier');
-        $data['product']=$this->input->post('product');
-        $data['bruto']=$this->input->post('bruto');
-        $data['tarra']=$this->input->post('tarra');
-        $data['persen_potongan']=$this->input->post('persen_potongan');
-        $data['nilai']=$this->input->post('nilai');
-
-        $hasil['netto']          =$data['bruto']-$data['tarra'] ;
-        $hasil['nilai_potongan'] =$hasil['netto']*$data['persen_potongan']/100 ;
-        $hasil['total_bersih']   =$hasil['netto']-$hasil['nilai_potongan'];
-        $hasil['jumlah']         =$hasil['total_bersih']*$data['nilai'];
-
-            if (is_null($uniqid)) {
-            $uniqid=uniqid("",TRUE);
             //Header
-            $this->Model_Timbangan->pemesanan('timbangan_h_penimbangan',$pencatatan,$uniqid);
-            }
+            $this->Model_Timbangan->penimbangan('timbangan_h_penimbangan',$pencatatan,$uniqid);
+            
 
-            //Detail Pemesanan
-                $insert = array(    'id_product' =>$data['product'],
+            //Detail penimbangan
+                       $insert = array(    'id_product' =>$data['product'],
                                     'id_kendaraan' =>$data['kendaraan'],
                                     'id_customer' =>$data['customer'],
                                     'id_supplier' =>$data['supplier'],
-                                    'bruto'=>$data['bruto'],
-                                    'tarra'=>$data['tarra'],
-                                    'netto'=>$hasil['netto'],
-                                    'persen_potongan'=>$data['persen_potongan'],
-                                    'nilai_potongan'=>$hasil['nilai_potongan'],
+                                    'persen_potongan' =>$data['persen_potongan'],
                                     'nilai_persatuan'=>$data['nilai'],
-                                    'total_bersih'=>$hasil['total_bersih'],
-                                    'jumlah'=>$hasil['jumlah'],
+                                    'supir'=>$data['supir']
                                     );
 
-                $this->Model_Timbangan->detailpemesanan('timbangan_detail_penimbangan',$insert,$uniqid);
+                $this->Model_Timbangan->detailpenimbangan('timbangan_detail_penimbangan',$insert,$uniqid); 
+ 
 
-                echo base_url('daftar_struk/read/'.$uniqid);
+                    $masuk_piutang=$_POST['hutang'];
+                
 
+                /* if ($masuk_piutang==1) {
+                    $coa_piutang=$this->Model_Timbangan->cek_coa_piutang($insert['id_customer']);
+                    $coa_pendapatan=get_option('id_coa_pendapatan');
+                    $keterangan='Hutang '. ' untuk '.$insert['total_bersih'].' kg.'.'Sebesar'.number_format($insert['jumlah']);
+                    $data_kirim['data_piutang']=array(
+                                        'id_coa_pendapatan' =>$coa_pendapatan ,
+                                        'nilai'=>$insert['jumlah'],
+                                        'id_coa_piutang'=>$coa_piutang,
+                                        'keterangan'=>$keterangan);
+
+                    piutang_timbangan($data_kirim);
+                } */
+
+                //echo base_url('daftar_struk/read/'.$uniqid);
+            
+ 
+        }
+            $pilihan=$data['status_timbang'];
+            $pesan=$this->isi_timbangan($uniqid,$pilihan,$data['massa']);    
+
+            echo "<pre>";
+            print_r($data);
+            print_r($pencatatan);
+            echo "</pre>";
+    }
+    
+
+    function isi_timbangan($uniqid,$pilihan='bruto',$massa=NULL)
+    {
+        $cek_data=$this->Model_Timbangan->cek_nilai_timbang($uniqid);
+        $data = array($pilihan =>$massa );
+        
+        $data['netto']          =$cek_data['bruto']-$massa ;
+        $data['nilai_potongan'] =$data['netto']*$cek_data['persen_potongan']/100 ;
+        $data['total_bersih']   =$data['netto']-$data['nilai_potongan'];
+        $data['jumlah']         =$data['total_bersih']*$cek_data['nilai_persatuan'];
+        
+        if ($pilihan='bruto') {
+            $data['waktu_masuk']=date_timestamp_get();
+        } else {
+            $data['waktu_keluar']=date_timestamp_get();
+        }
+        
+        $this->Model_Timbangan->isi_timbangan('timbangan_detail_penimbangan',$data,$uniqid);
+        return "Berhasil menimbang ".$pilihan;
+    }
+
+    function piutang_timbangan($data_piutang=NULL)
+    {
+        
+        $data['header']=array(  'eod' =>get_option('buka_timbangan') ,
+                                'status'=>1,
+                                'user_pembuat'=>$this->id_penimbang,
+                                'id_tipe_voucher'=>'PD' 
+                                );
+
+        $data['kredit']=array(  'id_coa' =>$data_piutang['id_coa_pendapatan'] ,
+                                'kredit'=>$data_piutang['nilai'],
+                                'keterangan'=>$data_piutang['keterangan'] );
+
+        $data['debit']=array(   'id_coa' =>$data_piutang['id_coa_piutang'] ,
+                                'debit'=>$data_piutang['nilai'],
+                                'keterangan'=>$data_piutang['keterangan'] );
+
+        $alamat_api=base_url('akuntansi/jurnalumum/simpan_api');
+
+        $result=$this->curl->simple_post($alamat_api,$data);
+        echo "<pre>";
+        print_r( $data);
+        echo $alamat_api;
+        print_r(json_decode($result));
+        echo "</pre>";
     }
 
 }

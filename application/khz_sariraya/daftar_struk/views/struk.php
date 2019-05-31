@@ -60,7 +60,7 @@
   <tr>
 	<td>Nama Supir</td>
 	<td>:</td>
-	<td><?php echo $print['nama_kendaraan']; ?></td>
+	<td><?php echo $print['supir']; ?></td>
   </tr>
   
   <tr>
@@ -84,8 +84,8 @@
 			</tr>
 			
 			<tr>
-				<td><?php echo date_format(date_create($print['waktu_order']),"H:i"); ?></td>
-				<td>12.00</td>
+				<td><?php echo date_format(date_create($print['waktu_masuk']),"H:i"); ?></td>
+				<td><?php echo date_format(date_create($print['waktu_keluar']),"H:i"); ?></td>
 				<td><?php echo $print['id_timbang']; ?></td>
 				<td>
 					<p>Berat Bruto</p>

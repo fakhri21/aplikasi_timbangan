@@ -20,8 +20,24 @@
             <label for="varchar">Email <?php echo form_error('email') ?></label>
             <input type="text" class="form-control" name="email" id="email" placeholder="Email" value="<?php echo $email; ?>" />
         </div>
+	    <div class="form-group">
+            <label for="varchar">Coa <?php echo form_error('coa_piutang') ?></label>
+            <select id="coa_piutang" name="coa_piutang"></select>
+        </div>
 	    <input type="hidden" name="uniqid" value="<?php echo $uniqid; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo base_url('m_customer') ?>" class="btn btn-default">Cancel</a>
 	</form>
 </div>
+
+<script>
+    $.getJSON("<?php echo base_url('akuntansi/laporan_piutang/list_coa_piutang') ?>",function (data) {
+        $("#coa_piutang").selectize({
+            valueField: 'id_coa',
+            labelField: 'nama_coa',
+            searchField: 'nama_coa',
+            options: data,
+            create: false
+        });
+    })   
+</script>
