@@ -155,7 +155,6 @@
 		</div>
 	</div>
     <div class="col-md-12">
-        <button class="btn btn-primary" onclick="hitung_timbangan()"><i class="fa fa-check"></i> Hitung Timbangan</button>
         <button class="btn btn-success" onclick="masuk_timbangan()"><i class="fa fa-check"></i> Simpan</button>
         <button class="btn btn-danger" onclick="location.reload()"><i class="fa fa-remove"></i> Cancel</button>
     </div>
@@ -184,7 +183,7 @@ $(document).ready(function() {
             })
         });
 
-    $.getJSON("<?php echo base_url('daftar_struk/json'); ?>",function (data) {
+    $.getJSON("<?php echo base_url('timbangan/json_list_timbang'); ?>",function (data) {
         data
         $("#search_voucher").selectize({
            valueField: 'uniqid',
@@ -239,20 +238,6 @@ function isi_tarra(nilai) {
     $('#tarra').val(nilai)
 }
 
-function hitung_timbangan() {
-    var data={
-        'massa'     :   numeral($('#massa').val()).value(),
-        'persen_potongan'  :   numeral($('#persen_potongan').val()).value(),
-        'nilai'     :   numeral($('#nilai').val()).value(),
-
-    }
-
-    $.post('<?php echo base_url("timbangan/hitung_timbangan/"); ?>',data,function (response) {
-        alertify.success("Berhasil Menambahkan");
-        $("#hasil_timbangan").html(response)
-    })
-}
-
 function masuk_timbangan() {
     var kondisi=$("#status").val()
     var data={
@@ -273,10 +258,27 @@ function masuk_timbangan() {
             data.customer=$("#m_supplier").val()
         }
 
-    $.post('<?php echo base_url("timbangan/masuktimbangan/"); ?>',data,function (response) {
-        alert("Berhasil Menambahkan");
-        location.reload
+    alertify.confirm("Apakah anda yakin ?",function (e) {
+        if (e) {
+            $.post('<?php echo base_url("timbangan/masuktimbangan/"); ?>',data,function (response) {
+                alert("Berhasil Menambahkan");
+                window.location.reload()
+            })  
+        } else {
+            
+        }
     })
+    
 }    
+
+function tes_confirm(params) {
+    alertify.confirm("Apakah anda yakin",function (e) {
+        if (e) {
+          alert("sdfsdf")  
+        } else {
+            
+        }
+    })
+}
 </script>
 

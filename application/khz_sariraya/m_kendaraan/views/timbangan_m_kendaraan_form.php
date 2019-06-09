@@ -17,10 +17,6 @@
             <label for="varchar">Nama Kendaraan <?php echo form_error('nama_kendaraan') ?></label>
             <input type="text" class="form-control" name="nama_kendaraan" id="nama_kendaraan" placeholder="Nama Kendaraan" value="<?php echo $nama_kendaraan; ?>" />
         </div>
-	    <div class="form-group">
-            <label for="decimal">Nilai Tarra <?php echo form_error('nilai_tarra') ?></label>
-            <input type="text" class="form-control" name="nilai_tarra" id="nilai_tarra" placeholder="Nilai Tarra" value="<?php echo $nilai_tarra; ?>" />
-        </div>
 	    <input type="hidden" name="uniqid" value="<?php echo $uniqid; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo base_url('m_kendaraan') ?>" class="btn btn-default">Cancel</a>

@@ -30,16 +30,13 @@ class Model_Timbangan extends CI_Model {
 
 	
 /* Kontent */
-	function cek_coa_piutang($id_customer)
-	{
-		
-		$this->db->select('id_coa');
-		$this->db->from('timbangan_m_customer a');
-		$this->db->where('uniqid', $id_customer);
-		$this->db->join('akuntansi_m_coa b', 'a.uniqid_coa_piutang = b.uniqid', 'left');
-		$data=$this->db->get()->row();
-		return $data->id_coa;
-	}
+	 function json() {
+        $this->datatables->select('uniqid_header as uniqid,concat(id_timbang,\' - \',no_plat) as id_timbang');
+        $this->datatables->from('timbangan_laporan_penimbangan');
+        //add this line for join
+        //$this->datatables->join('table2', 'Daftar_struk.field = table2.field');
+        return $this->datatables->generate();
+    }
 	
 	function cek_nilai_timbang($uniqid)
 	{

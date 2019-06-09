@@ -21,7 +21,7 @@ class Model_kendaraan extends CI_Model
         $this->datatables->from('timbangan_m_kendaraan');
         //add this line for join
         //$this->datatables->join('table2', 'timbangan_m_kendaraan.field = table2.field');
-        $this->datatables->add_column('action', anchor(site_url('m_kendaraan/read/$1'),'Read')." | ".anchor(site_url('m_kendaraan/update/$1'),'Update')." | ".anchor(site_url('m_kendaraan/delete/$1'),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'uniqid');
+        $this->datatables->add_column('action', anchor(base_url('m_kendaraan/read/$1'),'Read')." | ".anchor(base_url('m_kendaraan/update/$1'),'Update')." | ".anchor(base_url('m_kendaraan/delete/$1'),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'uniqid');
         return $this->datatables->generate();
     }
 

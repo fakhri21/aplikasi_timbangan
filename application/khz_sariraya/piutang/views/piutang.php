@@ -1,6 +1,6 @@
 
 
-    <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="box box-primary">
 
             <div class="box-header with-border">
@@ -114,9 +114,17 @@ function tambah_jurnal() {
     'keterangan':$('#keterangan').val()
     }
 
-    $.post('<?php echo base_url("piutang/piutang_timbangan/"); ?>'+type+'',data,function (response) {
-        alertify.success("Berhasil Menambahkan");
-        refresh_table("mytable");
+    alertify.confirm("Apakah anda yakin ?",function (e) {
+        if (e) {
+            $.post('<?php echo base_url("piutang/piutang_timbangan/"); ?>'+type+'',data,function (response) {
+                alertify.success("Berhasil Menambahkan");
+                refresh_table("mytable");
+            })  
+        } else {
+            
+        }
     })
+
+    
 }
 </script>

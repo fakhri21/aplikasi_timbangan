@@ -21,7 +21,9 @@ public function __construct() {
     $user = wp_get_current_user();
     $this->status_timbangan=get_option('buka_timbangan');
     $this->load->model('Model_Timbangan');
+    $this->load->library('datatables');
     $this->load->helper('nuris_helper');
+    $this->load->helper('timbangan_helper');
 
     if ($this->status_timbangan=='') {  
             $this->session->set_flashdata('message_failed', 'Buka Timbangan terlebih dahulu');
@@ -47,11 +49,25 @@ public function __construct() {
 
     
 /* Kontent */
-    public function kontent_table_pesanan()
+    public function json_list_timbang()
     {
-        
-        $this->load->view('kontent_kasir/kontent_table_pesanan');
-         
+        header('Content-Type: application/json');
+        echo $this->Model_Timbangan->json();
+    }
+    
+    public function nilai_timbangan()
+    {
+        $option = array( 'portName'  => get_option('comp_port'),
+                            'baudRate'  =>get_option('baud_rate'),
+                            'bits'      =>get_option('data_bits'),
+                            'spotBit'   =>1
+                             );
+        $data= get_nilai_timbangan($option);
+        $result=doubleval(substr($data,7,7));
+
+        echo $result;
+
+
     }
     
 
@@ -168,9 +184,9 @@ public function __construct() {
         $data['jumlah']         =$data['total_bersih']*$cek_data['nilai_persatuan'];
         
         if ($pilihan='bruto') {
-            $data['waktu_masuk']=date_timestamp_get();
+            $data['waktu_masuk']=date("Y-m-d H:i:s");
         } else {
-            $data['waktu_keluar']=date_timestamp_get();
+            $data['waktu_keluar']=date("Y-m-d H:i:s");
         }
         
         $this->Model_Timbangan->isi_timbangan('timbangan_detail_penimbangan',$data,$uniqid);

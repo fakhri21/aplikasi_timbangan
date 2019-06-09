@@ -134,8 +134,8 @@ class M_kendaraan extends CI_Controller
     {
 	$this->form_validation->set_rules('id_kendaraan', 'id kendaraan', 'trim|required');
 	$this->form_validation->set_rules('no_plat', 'no plat', 'trim|required');
-	$this->form_validation->set_rules('nama_kendaraan', 'nama kendaraan', 'trim|required');
-	$this->form_validation->set_rules('nilai_tarra', 'nilai tarra', 'trim|required|numeric');
+	$this->form_validation->set_rules('nama_kendaraan', 'nama kendaraan', 'trim');
+	$this->form_validation->set_rules('nilai_tarra', 'nilai tarra', 'trim');
 
 	$this->form_validation->set_rules('uniqid', 'uniqid', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

@@ -29,7 +29,6 @@
                         <th>Id Kendaraan</th>
                         <th>No Plat</th>
                         <th>Nama Kendaraan</th>
-                        <th>Nilai Tarra</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -87,8 +86,6 @@
                         "data": "no_plat"
                     }, {
                         "data": "nama_kendaraan"
-                    }, {
-                        "data": "nilai_tarra"
                     },
                     {
                         "data": "action",

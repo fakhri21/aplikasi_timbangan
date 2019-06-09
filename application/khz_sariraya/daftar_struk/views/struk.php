@@ -117,12 +117,17 @@
 				<p>Kg</p>
 				</td>
 			</tr>
+		<tr>
+			<td>
+			<p>Harga / Kg : Rp <?php echo number_format($print['nilai_persatuan']); ?></p>
+			<p>Grand Total : Rp <?php echo number_format($print['jumlah']); ?></p>
+			</td>
+		</tr>	
 
 		</thead>
 	</table>
   </div><!-- faktur -->
 
-<br>
 <br>
 <br>
 
