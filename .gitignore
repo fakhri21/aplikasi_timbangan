@@ -1,2 +1,2 @@
-# Add any directories, files, or patterns you don't want to be tracked by version control
-/dompdf/lib/fonts/log.htm
+/wp-snapshots
+/wp-content/uploads/elementor/css/post-144.css
