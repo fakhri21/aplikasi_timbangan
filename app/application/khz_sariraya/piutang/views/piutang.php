@@ -1,6 +1,17 @@
 
+<div class="mt-3">
+	
 
     <div class="col-md-12 col-sm-12 col-xs-12">
+	<div class="mt-2 mb-4">
+<a style="padding: 9px 15px; background: #81c784; color: #fff; cursor: pointer; border-radius:3px;"onclick="goBack()"><i class="fa fa-angle-left"></i> Kembali</a>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script> 
+</div>
         <div class="box box-primary">
 
             <div class="box-header with-border">
@@ -58,6 +69,8 @@
 
         </div><!-- box -->
     </div><!-- col -->
+	
+	</div>
 
 
 

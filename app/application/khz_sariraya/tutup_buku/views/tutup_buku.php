@@ -22,9 +22,17 @@ if (!empty($this->session->flashdata('message_failed'))) {
 
 ?>
 <div class="container">
+	<div class="mt-4">
+	 <a style="padding: 9px 15px; background: #81c784; color: #fff; cursor: pointer; border-radius:3px;"onclick="goBack()"><i class="fa fa-angle-left"></i> Kembali</a>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script> 
+</div>
     <div class="box box-primary px-2" style="margin-top: 30px;">
         <div class="box-header">
-            <a href="<?php echo base_url('akuntansi') ?>" class="btn btn-link btn-back"><i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
             <h3 class="display- mb-2">
                 Tutup Buku
             </h3>

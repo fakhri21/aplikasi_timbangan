@@ -1,4 +1,13 @@
 <div class="col-md-12">
+<div class="mt-4">
+<a style="padding: 9px 15px; background: #81c784; color: #fff; cursor: pointer; border-radius:3px;"onclick="goBack()"><i class="fa fa-angle-left"></i> Kembali</a>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script> 
+</div>
 
     <div class="box box-primary" style="margin-top: 30px;">
         <div class="box-header">

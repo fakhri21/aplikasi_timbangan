@@ -1,9 +1,19 @@
 <div class="container">
+<div class="mt-4">
+<a style="padding: 9px 15px; background: #81c784; color: #fff; cursor: pointer; border-radius:3px;"onclick="goBack()"><i class="fa fa-angle-left"></i> Kembali</a>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script> 
+</div>
+
     <div class="row">
         <div class="col">
             <div class="box box-primary" style="margin-top: 40px;">
                 <div class="box-header">
-                    <h1 class="display-4">Laporan Timbang</h1>
+                    <h3>Laporan Timbang</h3>
                 </div>
                 <div class="box-body">
                     <div class="row">

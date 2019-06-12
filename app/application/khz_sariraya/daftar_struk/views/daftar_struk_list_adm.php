@@ -1,9 +1,19 @@
 <div class="container">
+<div class="mt-4">
+<a style="padding: 9px 15px; background: #81c784; color: #fff; cursor: pointer; border-radius:3px;"onclick="goBack()"><i class="fa fa-angle-left"></i> Kembali</a>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script> 
+</div>
+
     <div class="row mb-2">
         <div class="col">
             <div class="box box-primary" style="margin-top: 40px;">
                 <div class="box-header">
-                     <h1 class="display-4">Daftar struk</h1>
+                     <h3>Daftar struk</h3>
                      <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
                 </div>
                 <div class="box-body">

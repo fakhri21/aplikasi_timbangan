@@ -43,7 +43,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<div class="container">
-  <a class="navbar-brand" href="#"><img src="<?php echo base_url();?>assets/img/menu-digital.png" height="60px"> Menu Digital</a>
+  <a class="navbar-brand" href="<?php echo site_url();?>/dashboard"><img src="<?php echo base_url();?>assets/img/tone.png" height="60px"> Timbangan</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
